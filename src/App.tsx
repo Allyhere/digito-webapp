@@ -11,6 +11,7 @@ import { Navbar } from "@/components/navbar";
 import { SimulationModule } from "@/modules/SimulationModule";
 
 import digitoLogo from "@/assets/logo-digitocred.svg";
+import { Stepper } from "./components/stepper";
 
 function App() {
   return (
@@ -97,6 +98,7 @@ function App() {
         </div>
       </section>
       <SimulationModule />
+      <Stepper/>
       <footer className="grid justify-center gap-8 text-white bg-cyan-700 full-bled -mx-4 p-8">
         <img
           src={digitoLogo}

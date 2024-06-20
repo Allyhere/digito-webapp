@@ -19,7 +19,7 @@ const SimulationModule = () => {
     console.log(payload);
   };
   return (
-    <SimulatorContainer>
+    // <SimulatorContainer>
       <SimulatorForm
         submitForm={onFormSubmit}
         installmentValue={stringToCurrency(calculateLoan(loan, interest))}
@@ -27,7 +27,7 @@ const SimulationModule = () => {
         <SimulationInput loan={loan} setLoan={setLoan} />
         <SimulationInstallment setInterest={setInterest} />
       </SimulatorForm>
-    </SimulatorContainer>
+    /* </SimulatorContainer> */
   );
 };
 
