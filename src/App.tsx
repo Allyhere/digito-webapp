@@ -11,11 +11,10 @@ import { Navbar } from "@/components/navbar";
 import { SimulationModule } from "@/modules/SimulationModule";
 
 import digitoLogo from "@/assets/logo-digitocred.svg";
-import { Stepper } from "./components/stepper";
 
 function App() {
   return (
-    <main className="grail gap-y-4 text-gray-800 px-4 md:px-8">
+    <main className="grail gap-y-6 text-gray-800">
       <Navbar />
       <section className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 py-12">
         <header className="max-w-[500px] grid gap-4 auto-rows-min">
@@ -32,7 +31,7 @@ function App() {
         </header>
         <img src="https://placehold.co/400x200" alt="" className="w-full" />
       </section>
-      <Separator className="max-w-80 justify-self-center my-8" />
+      {/* <Separator className="max-w-80 justify-self-center my-8" />
       <section className="grid">
         <div className="flex flex-wrap w-full mb-8 flex-col items-center text-center">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
@@ -88,7 +87,7 @@ function App() {
             </CardFooter>
           </Card>
         </div>
-      </section>
+      </section> */}
       <Separator className="max-w-80 justify-self-center my-8" />
       <section>
         <div className="flex flex-wrap w-full mb-8 flex-col items-center text-center">
@@ -97,9 +96,10 @@ function App() {
           </h1>
         </div>
       </section>
-      <SimulationModule />
-      <Stepper/>
-      <footer className="grid justify-center gap-8 text-white bg-cyan-700 full-bled -mx-4 p-8">
+      <section className="grid justify-items-center grid-cols-1 gap-6">
+        <SimulationModule />
+      </section>
+      <footer className="grid justify-center gap-8 text-white bg-cyan-700 full-bled mt-8 p-8">
         <img
           src={digitoLogo}
           alt="voltar pra home"

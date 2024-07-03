@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { CircleCheck, LoaderCircle } from "lucide-react";
+type states = "none" | "ongoing" | "done";
 
 const Stepper = () => {
-  type states = "none" | "ongoing" | "done";
 
   const stepVariants = cva(
     "c-stepper__step font-bold grid size-8 place-content-center rounded-full bg-cyan-100 text-cyan-700 relative",

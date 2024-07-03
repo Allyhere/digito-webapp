@@ -3,7 +3,7 @@ import { Input } from "../ui/input";
 
 const SimulatorData = () => {
   return (
-    <div className="grid columns-2 gap-2">
+    <div className="grid grid-cols-2 gap-2">
       <Label className="col-span-2" htmlFor="name">
         Nome completo
         <Input type="text" placeholder="Maria da Silva" name="name" id="name" />

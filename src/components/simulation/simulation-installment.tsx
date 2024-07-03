@@ -18,7 +18,7 @@ const SimulationInstallment = ({
         defaultValue="3x"
         className="flex flex-wrap gap-4"
       >
-        {Object.keys(INSTALLMENTS).map((installment, index) => {
+        {Object.keys(INSTALLMENTS).map((installment) => {
           const fieldIndex = useId();
           return (
             <div className="flex items-center space-x-2">
