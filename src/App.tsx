@@ -1,12 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Navbar } from "@/components/navbar";
 import { SimulationModule } from "@/modules/SimulationModule";
 

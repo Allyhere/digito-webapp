@@ -34,7 +34,8 @@ const SimulationModule = () => {
     console.log(
       Array.from((event.target as HTMLFormElement).elements)
         .filter((element) => element.nodeName === "INPUT")
-        .map((input) => (input as HTMLInputElement).value)
+        .map((input) => (input as HTMLInputElement).value),
+      payload
     );
   };
 

@@ -3,12 +3,10 @@ import { ArrowRight } from "lucide-react";
 
 const SimulatorForm = ({
   children,
-  installmentValue,
   submitForm,
   action,
 }: {
   children: ReactNode;
-  installmentValue?: string;
   submitForm: (event: SyntheticEvent) => void;
   action: string;
 }) => {
