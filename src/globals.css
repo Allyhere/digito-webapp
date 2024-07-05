@@ -14,20 +14,105 @@
   grid-column: -1 / 1;
 }
 
-.c-stepper__step:not(:last-of-type)::before {
-  --translate: calc(3rem - 125%);
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  transform: translate(var(--translate), -50%);
-  border-radius: 1rem;
-  width: 100%;
-  height: 3px;
-  background: #0e7490;
+.fluid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+.c-card {
+  --c-card-padding: 24px;
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  gap: 0.5rem;
+  padding: var(--c-card-padding);
+  overflow: hidden;
+  border-radius: 0.5rem;
+  position: relative;
+  min-height: 438px;
+}
 
+.theme-2 {
+  --c-card-bg: #194167;
+  --c-card-color: #bdedf5;
+  --c-card-index: #194167;
+}
+.theme-3 {
+  --c-card-bg: #cafd80;
+  --c-card-color: #194167;
+  --c-card-index: #194167;
+}
+
+.c-card__header {
+  --theme-bg: #bdedf5;
+  --theme-color: #194167;
+
+  --c-card-margin: calc(var(--c-card-padding) * -1);
+  display: grid;
+  align-items: center;
+  gap: 0.5rem;
+  height: min-content;
+  min-height: 148px;
+  background: var(--c-card-bg, var(--theme-bg));
+  color: var(--c-card-color, var(--theme-color));
+  padding: var(--c-card-padding);
+  margin-inline: var(--c-card-margin);
+  margin-block-start: var(--c-card-margin);
+  &:not(.open) > .c-card__action {
+    display: none;
+  }
+}
+
+.c-card__header.open {
+  height: auto;
+  grid-template-columns: initial;
+  position: absolute;
+  inset: 0;
+  margin: unset;
+  * {
+    grid-column: unset;
+  }
+  & > .c-card__container {
+    grid-template-columns: unset;
+  }
+}
+
+.c-card__container {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-auto-rows: max-content;
+  gap: 0.5rem;
+}
+
+.c-card__index {
+  --size: 60px;
+  display: grid;
+  place-items: center;
+  grid-row: 1 / 3;
+  height: var(--size);
+  width: var(--size);
+  border-radius: var(--size);
+  background: #ffffff;
+  color: var(--c-card-index, currentColor);
+  @apply text-xl font-bold;
+}
+
+.c-card__title {
+  @apply text-2xl font-bold;
+  grid-column: 2;
+}
+
+.c-card__description {
+  @apply text-sm;
+  grid-column: 2;
+}
+
+.c-card__action {
+  place-self: end;
+  a {
+    display: flex;
+    align-items: center;
+  }
+}
 
 @layer base {
   :root {

@@ -1,46 +1,103 @@
 import { SimulationInstallment } from "@/components/simulation/simulation-installment";
-import { SimulatorContainer } from "@/components/simulation/simulation-container";
 import { SimulatorForm } from "@/components/simulation/simulation-form";
 import { SimulatorData } from "@/components/simulation/simulation-data";
+import { SimulatorIncome } from "@/components/simulation/simulation-income";
 import { SimulationInput } from "@/components/simulation/simulation-input";
-import { stringToCurrency, calculateLoan } from "@/lib/currency";
-import { useState } from "react";
+import { calculateLoan } from "@/lib/currency";
+import { useState, SyntheticEvent } from "react";
 import { InstallmentKeys } from "@/lib/currency";
+import { ChevronRight, CheckCheck } from "lucide-react";
+import { Card, CardTitle } from "@/components/card";
 
 const SimulationModule = () => {
   const [loan, setLoan] = useState("R$ 300");
   const [interest, setInterest] = useState<InstallmentKeys>("3x");
-  const onFormSubmit = () => {
+  const [startSimulation, setStartSimulation] = useState<{
+    title: string;
+    description: string;
+    index: any;
+  }>({
+    title: "Simule seu empréstimo",
+    description:
+      "Simule rapidamente e com segurança  e viabilize aquele sonho que você tanto deseja",
+    index: 1,
+  });
+  const [step, setStep] = useState("INITIALIZE");
+
+  const onFormSubmit = (step: string, event: SyntheticEvent) => {
     const payload = {
       loan,
       interest,
       installment: calculateLoan(loan, interest),
     };
-
-    console.log(payload);
+    setStep(step);
+    console.log(
+      Array.from((event.target as HTMLFormElement).elements)
+        .filter((element) => element.nodeName === "INPUT")
+        .map((input) => (input as HTMLInputElement).value)
+    );
   };
+
+  const handleStartSimulation = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setStartSimulation({
+      title: "Solicitação",
+      description: "O valor precisa estar entre R$500 e R$15.000",
+      index: <CheckCheck />,
+    });
+    setStep("FIRST");
+  };
+
   return (
-    <div className="grid grid-cols-3 gap-4">
-      <SimulatorContainer title="Solicitação">
+    <div className="fluid-grid gap-4 w-full">
+      <Card>
+        <CardTitle cardInfo={startSimulation} open={step !== "FIRST"}>
+          <a href="" onClick={handleStartSimulation}>
+            Começar simulação <ChevronRight />
+          </a>
+        </CardTitle>
         <SimulatorForm
           action="Incluir dados de envio "
-          submitForm={onFormSubmit}
+          submitForm={(event: SyntheticEvent) => onFormSubmit("SECOND", event)}
         >
           <SimulationInput loan={loan} setLoan={setLoan} />
           <SimulationInstallment setInterest={setInterest} />
         </SimulatorForm>
-      </SimulatorContainer>
-      <SimulatorContainer
-        title="Dados de envio"
-        description="Precisamos confirmar sua identidade e o e-mail que enviaremos análise (não enviaremos spam)."
-      >
+      </Card>
+      <Card classes="theme-2">
+        <CardTitle
+          cardInfo={{
+            title: "Dados de envio",
+            description:
+              "Precisamos confirmar sua identidade e o e-mail que enviaremos análise (não enviaremos spam).",
+            index: 2,
+          }}
+          open={step !== "SECOND"}
+        />
         <SimulatorForm
           action="Adicionar informações de renda"
-          submitForm={onFormSubmit}
+          submitForm={(event: SyntheticEvent) => onFormSubmit("THIRD", event)}
         >
           <SimulatorData />
         </SimulatorForm>
-      </SimulatorContainer>
+      </Card>
+      <Card classes="theme-3">
+        <CardTitle
+          cardInfo={{
+            title: "Informações de renda",
+            description:
+              "Agora basta incluir suas informações de trabalho para contribuir na aprovação da análise de crédito.",
+            index: 3,
+          }}
+          open={step !== "THIRD"}
+        />
+        <SimulatorForm
+          action="Receber simulação no meu e-mail"
+          submitForm={(event) => onFormSubmit("END", event)}
+        >
+          <SimulatorIncome />
+        </SimulatorForm>
+      </Card>
     </div>
   );
 };

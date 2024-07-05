@@ -9,12 +9,12 @@ const SimulatorForm = ({
 }: {
   children: ReactNode;
   installmentValue?: string;
-  submitForm: () => void;
+  submitForm: (event: SyntheticEvent) => void;
   action: string;
 }) => {
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    submitForm && submitForm();
+    submitForm && submitForm(event);
   };
   return (
     <form
@@ -22,19 +22,10 @@ const SimulatorForm = ({
       onSubmit={handleSubmit}
     >
       {children}
-      {/* <div className="grid gap-2 md:justify-self-center">
-        <h2 className="text-sm font-medium">
-          O valor estimado da parcela será:
-        </h2>
-        <p className="text-3xl font-bold text-green-500">{installmentValue}</p>
-        <Button variant="default" className="w-fit mt-4">
-          Simular empréstimo
-        </Button>
-      </div> */}
-      <a href="" className="flex gap-2 justify-self-end mt-auto">
+      <button className="flex gap-2 justify-self-end mt-auto">
         {action}
         <ArrowRight />
-      </a>
+      </button>
     </form>
   );
 };

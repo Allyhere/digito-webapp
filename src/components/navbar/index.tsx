@@ -7,7 +7,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useWindowSize } from "@uidotdev/usehooks";
-
 import digitoLogo from "@/assets/logo-digitocred.svg";
 import { Separator } from "@radix-ui/react-separator";
 
